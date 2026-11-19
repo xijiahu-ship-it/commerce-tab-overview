@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>划完之后 Demo</title>
+<style>
+:root{--ink:#1f1d1a;--muted:#8a857c;--line:#eee9e1;--accent:#ee4d2d;--accentsoft:#fff1ec;--green:#2f7a55;--greensoft:#e7f3ec;--blue:#2f63b8;--bluesoft:#eaf0fb;--amber:#b4701c;--ambersoft:#fbf1e2;--bg:#f7f5f1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#d9d4cb;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;color:var(--ink);padding:52px 40px 40px;display:flex;gap:34px;justify-content:center;align-items:flex-start}
+.wrap{position:relative;flex:none}
+.label{position:absolute;top:-36px;left:0;right:0;text-align:center;font-size:13px;color:#4d483f;font-weight:700}
+.frame{width:375px;height:812px;border-radius:44px;background:#111;padding:10px;box-shadow:0 30px 60px #0003}
+.screen{width:100%;height:100%;border-radius:36px;overflow:hidden;position:relative;background:var(--bg)}
+.status{height:42px;display:flex;justify-content:space-between;align-items:center;padding:0 26px;font-size:14px;font-weight:600}
+.tabs{display:flex;gap:16px;padding:2px 18px 0;font-size:15px;color:var(--muted);align-items:center}
+.tabs .on{color:var(--ink);font-weight:700;border-bottom:2.5px solid var(--accent);padding-bottom:3px}
+.tabs .r{margin-left:auto;font-size:18px;color:#5d584f}
+.pill{font-size:10.5px;border-radius:999px;padding:2px 8px;font-weight:700;white-space:nowrap}
+.pill.r{background:var(--accentsoft);color:var(--accent)}.pill.g{background:var(--greensoft);color:var(--green)}.pill.b{background:var(--bluesoft);color:var(--blue)}.pill.a{background:var(--ambersoft);color:var(--amber)}.pill.gr{background:#f0ede7;color:#7b766c}
+/* done page */
+.cd{text-align:center;margin-top:14px;font-size:13px;color:#6c675e}
+.cd em{font-style:normal;color:var(--accent);font-weight:700}
+.digits{display:flex;justify-content:center;gap:4px;margin-top:7px;align-items:center}
+.digits b{background:#fff;border-radius:7px;width:24px;height:28px;display:grid;place-items:center;font-size:15px;color:var(--accent);box-shadow:0 1px 0 #e6e0d6}
+.digits i{font-style:normal;color:#bbb;font-weight:700}
+.better{margin:14px 14px 0;background:linear-gradient(135deg,#fff,#fdf3ee);border-radius:22px;padding:16px}
+.better h3{font-size:17px}
+.better p{font-size:12.5px;color:#6c675e;margin-top:3px}
+.two{display:flex;gap:8px;margin-top:12px}
+.two>div{flex:1;background:#fff;border-radius:16px;padding:11px;box-shadow:0 1px 0 #eee}
+.two b{font-size:14px;display:flex;align-items:center;gap:6px}
+.two span.s{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.thumbs{display:flex;margin-top:8px}
+.thumbs i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-size:15px;background:#f5f1ea;border:2px solid #fff;margin-left:-6px}
+.thumbs i:first-child{margin-left:0}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+.sec{margin:14px 14px 0}
+.sech{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.sech b{font-size:14.5px}.sech span{font-size:11.5px;color:var(--muted)}
+.proj{background:#fff;border-radius:18px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.ring{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none}
+.ring i{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;font-size:19px}
+.proj .t{flex:1;min-width:0}
+.proj .t b{font-size:14px;display:block}
+.proj .t span{font-size:11.5px;color:var(--muted);display:block;margin-top:2px}
+.proj .t span.hot{color:var(--accent)}
+.askrow{margin:14px 14px 0;border-radius:999px;padding:12px 16px;background:linear-gradient(90deg,#f1ecff,#ffecea);font-size:13px;color:#5d584f;display:flex;justify-content:space-between}
+.askrow em{font-style:normal;color:var(--accent)}
+.boost{margin:10px 14px 0;background:#fff;border-radius:16px;padding:11px 14px;display:flex;gap:10px;align-items:center}
+.boost .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-size:18px;background:var(--bluesoft)}
+.boost b{font-size:13px;display:block}.boost span{font-size:11px;color:var(--muted)}
+.boost .go{margin-left:auto;color:#bbb}
+.nav{position:absolute;bottom:0;left:0;right:0;height:62px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;font-size:10.5px;color:var(--muted)}
+.nav div{text-align:center}.nav div i{display:block;font-style:normal;font-size:19px}
+.nav .on{color:var(--accent);font-weight:700}
+/* wishlist */
+.hd{display:flex;align-items:center;gap:10px;padding:6px 16px 0}
+.hd b{font-size:18px}.hd .back{font-size:20px;color:#5d584f}
+.hd .r{margin-left:auto;font-size:12px;color:var(--muted)}
+.filters{display:flex;gap:6px;padding:12px 16px 0;flex-wrap:wrap}
+.filters span{font-size:12px;border-radius:999px;padding:5px 11px;background:#fff;color:#5d584f}
+.filters span.on{background:var(--ink);color:#fff}
+.filters span em{font-style:normal;color:var(--accent);font-weight:700;margin-left:3px}
+.filters span.on em{color:#ffb39f}
+.list{margin:12px 14px 0;background:#fff;border-radius:18px;padding:2px 12px}
+.item{display:flex;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item .ic{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;font-size:25px;flex:none}
+.item .t{flex:1;min-width:0}
+.item .t b{font-size:13px;display:block}
+.item .t .st{font-size:11.5px;margin-top:2px;display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.item .t .when{font-size:10.5px;color:#b0aaa0;margin-top:2px}
+.item .act{font-size:11.5px;font-weight:700;color:#fff;background:var(--accent);border-radius:9px;padding:6px 10px;flex:none}
+.item .act.n{background:#f3efe8;color:var(--ink)}
+.swipehint{text-align:center;font-size:11px;color:var(--muted);margin-top:10px}
+.grp{font-size:11.5px;color:var(--muted);font-weight:600;margin:14px 18px 0}
+/* deck card (dark) */
+.dark{background:#14171b;color:#fff}
+.segs{display:flex;gap:4px;padding:4px 14px 0}
+.segs i{flex:1;height:3px;border-radius:9px;background:#ffffff38}.segs i.d{background:#fff}
+.top{display:flex;align-items:center;gap:8px;padding:10px 16px;font-size:12.5px;color:#d6dbe2}
+.top b{width:28px;height:28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-size:13px;color:#fff}
+.pcard{margin:4px 14px 0;border-radius:24px;background:#fff;color:var(--ink);overflow:hidden}
+.pcard .vis{height:200px;background:linear-gradient(160deg,#f3ece2,#e2d3bd);position:relative;display:grid;place-items:center}
+.collage{display:grid;grid-template-columns:repeat(3,62px);gap:8px}
+.collage i{height:62px;border-radius:14px;background:#fff;display:grid;place-items:center;font-style:normal;font-size:30px;box-shadow:0 4px 10px #0001;position:relative}
+.collage i.liked:after{content:"♥";position:absolute;right:-4px;top:-5px;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;display:grid;place-items:center}
+.pcard .kick{position:absolute;top:12px;left:12px;font-size:11px;font-weight:700;background:#fff;border-radius:999px;padding:4px 10px;color:var(--amber)}
+.pcard .tx{padding:14px 16px 16px}
+.pcard h3{font-size:19px;line-height:1.38;letter-spacing:-.3px}
+.pcard p{font-size:12.5px;color:#6c675e;margin-top:6px;line-height:1.55}
+.plan{margin-top:10px;background:#f7f5f1;border-radius:12px;padding:8px 10px;font-size:12px;line-height:1.8}
+.plan b{font-size:12px}
+.gest{display:flex;justify-content:space-between;padding:20px 26px 0;align-items:center}
+.g{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11.5px;color:#c4cad3}
+.g i{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:22px;background:#ffffff14;border:1.5px solid #ffffff24}
+.g.no i{color:#ff7d7d}.g.yes i{background:var(--accent);border-color:var(--accent)}
+.g.ask i{width:44px;height:44px;font-size:18px}
+/* project detail */
+.phero{margin:10px 14px 0;background:linear-gradient(135deg,#2c3b33,#1f2925);color:#fff;border-radius:22px;padding:15px 16px}
+.phero .r1{display:flex;justify-content:space-between;align-items:center}
+.phero h2{font-size:20px}
+.phero .days{font-size:12px;background:#ffffff1f;border-radius:999px;padding:3px 10px}
+.budget{margin-top:12px;font-size:12px;color:#c9d6cf;display:flex;justify-content:space-between}
+.budget b{color:#fff}
+.bbar{height:7px;border-radius:9px;background:#ffffff22;margin-top:6px;overflow:hidden;display:flex}
+.bbar i{display:block;height:100%}
+.nextstep{margin-top:12px;background:#ffffff14;border-radius:14px;padding:10px 12px;font-size:12.5px;display:flex;gap:10px;align-items:center}
+.nextstep b{display:block;font-size:13px}
+.nextstep .btn{margin-left:auto;background:var(--accent);border-radius:9px;padding:6px 10px;font-size:12px;font-weight:700;flex:none}
+.cl{margin:12px 14px 0;background:#fff;border-radius:18px;padding:4px 12px}
+.ck{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.ck:last-child{border-bottom:0}
+.ck .box{width:20px;height:20px;border-radius:6px;border:2px solid #d6d0c5;flex:none;display:grid;place-items:center;font-size:12px;color:#fff}
+.ck .box.on{background:var(--green);border-color:var(--green)}
+.ck .t{flex:1}
+.ck .t span{display:block;font-size:11px;color:var(--muted);margin-top:1px}
+.ck .t b{font-weight:600}
+.ck.done .t b{color:#aaa;text-decoration:line-through}
+.sug{margin:10px 14px 0;border:1.5px dashed #d6cfc3;border-radius:16px;padding:10px 12px;font-size:12.5px}
+.sug b{font-size:12.5px}
+.sug .chips{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap}
+.sug .chips span{background:#fff;border-radius:999px;padding:4px 10px;font-size:12px}
+.sug .chips span:before{content:"+ ";color:var(--accent);font-weight:700}
+.askp{position:absolute;left:12px;right:12px;bottom:14px;background:#fff;border-radius:18px;padding:11px 14px;display:flex;align-items:center;font-size:13px;color:var(--muted);box-shadow:0 8px 24px #0002}
+.askp b{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:14px}
+</style>
+</head>
+<body>
+
+<!-- 1 DONE HOME -->
+<div class="wrap"><div class="label">① 划完之后的首页</div><div class="frame"><div class="screen">
+  <div class="status"><span>9:41</span><span>100%</span></div>
+  <div class="tabs"><span class="on">今日 8 张</span><span>逛逛</span><span class="r">↺</span></div>
+  <div class="cd">每天 <em>8:30</em>，给你新的 8 张</div>
+  <div class="digits"><b>2</b><b>2</b><i>:</i><b>4</b><b>8</b><i>:</i><b>1</b><b>5</b></div>
+  <div class="better"><h3>明天的 8 张会更准～</h3><p>今天你想要了 3 件，我顺着它们去找了</p>
+    <div class="two">
+      <div><b><span class="dot"></span>想要的</b><span class="s"><span class="pill r">2 件有变化</span> 帮你盯着</span><div class="thumbs"><i>💼</i><i>🌙</i><i>💨</i><i>🧥</i></div></div>
+      <div><b>不需要的</b><span class="s">划错了？点这里反悔</span><div class="thumbs"><i>👟</i><i>🧴</i><i>☕</i></div></div>
+    </div></div>
+  <div class="sec"><div class="sech"><b>正在准备的事</b><span>1 个</span></div>
+    <div class="proj"><div class="ring" style="background:conic-gradient(var(--green) 33%,#ece6dc 0)"><i>🏠</i></div><div class="t"><b>12-12 搬家</b><span class="hot">还差 4 样 · 下一步：量窗户尺寸</span></div><span class="pill a">23 天</span></div></div>
+  <div class="askrow"><span>没看够？<em>直接问我</em>，帮你找想要的</span><span>🔍</span></div>
+  <div class="boost"><div class="ic">📏</div><div><b>告诉我你的尺码，只推合你码的</b><span>衣服鞋子少踩雷</span></div><span class="go">›</span></div>
+  <div class="nav"><div class="on"><i>✦</i>为你</div><div><i>💬</i>Chat</div><div><i>📦</i>订单</div><div><i>👤</i>我的</div></div>
+</div></div></div>
+
+<!-- 2 WISHLIST -->
+<div class="wrap"><div class="label">② 想要的：一个列表，有变化的排最前</div><div class="frame"><div class="screen">
+  <div class="status"><span>9:41</span><span>100%</span></div>
+  <div class="hd"><span class="back">‹</span><b>想要的</b><span class="r">5 件在盯 · 3 件已买</span></div>
+  <div class="grp">今天有变化 · 2</div>
+  <div class="list">
+    <div class="item"><div class="ic" style="background:#fbe9f0">🌙</div><div class="t"><b>Laneige 睡眠面膜</b><div class="st"><span class="pill r">7 折 · 今晚 23:59 截止</span></div><div class="when">11-17 右滑</div></div><span class="act">S$26 买</span></div>
+    <div class="item"><div class="ic" style="background:#e9eef4">💼</div><div class="t"><b>防泼水通勤包</b><div class="st"><span class="pill r">只剩 5 个</span><span class="pill g">和内胆包一起省 S$8</span></div><div class="when">今天右滑</div></div><span class="act">一起买</span></div>
+  </div>
+  <div class="grp">帮你盯着 · 3</div>
+  <div class="list">
+    <div class="item"><div class="ic" style="background:#f8e9ef">💨</div><div class="t"><b>Laifen SE 吹风机</b><div class="st"><span class="pill gr">S$129 · 12.12 预计 S$109</span></div><div class="when">降到 S$110 叫你</div></div><span class="act n">改目标价</span></div>
+    <div class="item"><div class="ic" style="background:#f3efe8">🗄️</div><div class="t"><b>6 层鞋架</b><div class="st"><span class="pill gr">S$32.90 · 本地 2–4 天送到</span></div><div class="when">11-16 右滑 · 已在购物车</div></div><span class="act n">去下单</span></div>
+    <div class="item"><div class="ic" style="background:#e3ecfa">🧥</div><div class="t"><b>轻羽绒</b><div class="st"><span class="pill gr">S$59 · 价格没变</span></div><div class="when">11-15 右滑</div></div><span class="act n">问问</span></div>
+  </div>
+  <div class="list" style="margin-top:12px;padding:11px 12px;display:flex;align-items:center;gap:8px;font-size:13px">
+    <b style="font-size:13px">已买 · 3</b><span style="display:flex;margin-left:4px"><span class="thumbs" style="margin:0"><i>🐈</i><i>🛏️</i><i>💾</i></span></span><span style="margin-left:auto;color:var(--muted)">展开 ⌄</span></div>
+  <div class="swipehint">← 左滑移出 · 买了自动移到「已买」</div>
+</div></div></div>
+
+</body>
+</html>

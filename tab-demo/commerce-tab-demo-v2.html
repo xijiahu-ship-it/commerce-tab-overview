@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>推荐页样式探索</title>
+<style>
+:root{--bg:#f6f4f0;--ink:#1f1d1a;--muted:#8a857c;--accent:#ee4d2d;--accentsoft:#fff1ec;--green:#2f7a55;--greensoft:#e7f3ec;--dark:#1d2422}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#d9d4cb;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;color:var(--ink);padding:48px 40px 40px;display:flex;gap:34px;justify-content:center;align-items:flex-start}
+.wrap{position:relative;flex:none}
+.label{position:absolute;top:-34px;left:0;right:0;text-align:center;font-size:13px;color:#4d483f;font-weight:700}
+.frame{width:375px;height:812px;border-radius:44px;background:#111;padding:10px;box-shadow:0 30px 60px #0003}
+.screen{width:100%;height:100%;border-radius:36px;overflow:hidden;background:var(--bg);position:relative}
+.status{height:42px;display:flex;justify-content:space-between;align-items:center;padding:0 26px;font-size:14px;font-weight:600}
+.tabs{display:flex;gap:16px;padding:4px 16px 10px;font-size:14px;color:var(--muted);align-items:center}
+.tabs .on{color:var(--ink);font-weight:700;border-bottom:2.5px solid var(--accent);padding-bottom:3px}
+.tabs .upd{margin-left:auto;font-size:11px;color:var(--accent);background:var(--accentsoft);border-radius:999px;padding:2px 8px}
+.askbar{position:absolute;left:12px;right:12px;bottom:14px;background:#fff;border-radius:18px;padding:11px 14px;display:flex;align-items:center;font-size:13px;color:var(--muted);box-shadow:0 8px 24px #0002;z-index:5}
+.askbar b{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:14px}
+
+/* ---------- A: waterfall ---------- */
+.mason{display:flex;gap:8px;padding:0 10px}
+.col{flex:1;display:flex;flex-direction:column;gap:8px}
+.tile{background:#fff;border-radius:14px;overflow:hidden}
+.tile .img{position:relative;display:grid;place-items:center;font-size:52px}
+.hook{position:absolute;left:7px;top:7px;right:7px;font-size:10.5px;font-weight:700;line-height:1.35;color:#fff;background:#000000a0;backdrop-filter:blur(4px);border-radius:8px;padding:4px 7px;width:fit-content;max-width:calc(100% - 14px)}
+.hook.hot{background:#ee4d2de8}
+.hook.ok{background:#2f7a55e8}
+.tile .tx{padding:7px 9px 9px}
+.tile .h{font-size:12.5px;line-height:1.42;font-weight:600}
+.tile .m{display:flex;justify-content:space-between;align-items:center;margin-top:5px;font-size:11px;color:var(--muted)}
+.price{color:var(--accent);font-weight:700;font-size:13px}
+.was{color:#aaa;text-decoration:line-through;font-size:10.5px;margin-left:3px;font-weight:400}
+.mini{font-size:10.5px;font-weight:600;color:var(--accent);background:var(--accentsoft);border-radius:7px;padding:2px 7px}
+.ring{width:64px;height:64px;border-radius:50%;background:conic-gradient(var(--green) 25%,#e6dfd3 0);display:grid;place-items:center}
+.ring i{width:50px;height:50px;border-radius:50%;background:#f4ede2;display:grid;place-items:center;font-style:normal;font-size:24px}
+.av{display:flex;margin-top:5px}.av i{width:16px;height:16px;border-radius:50%;border:1.5px solid #fff;margin-left:-5px}.av i:first-child{margin-left:0}
+.cd{display:flex;gap:3px;align-items:center;margin-top:5px;font-size:10px;color:var(--muted)}
+.cd b{background:var(--dark);color:#fff;border-radius:5px;padding:1px 4px;font-size:11px}
+
+/* ---------- A2: tapped & branching ---------- */
+.sheetbg{position:absolute;inset:0;background:#0006}
+.sheet{position:absolute;left:0;right:0;bottom:0;top:96px;background:#fff;border-radius:24px 24px 0 0;padding:10px 16px 0}
+.grab{width:38px;height:5px;border-radius:9px;background:#ddd;margin:0 auto 12px}
+.sheet .big{height:150px;border-radius:16px;background:linear-gradient(135deg,#f6e7ee,#ead3df);display:grid;place-items:center;font-size:70px;position:relative}
+.sheet h3{font-size:18px;line-height:1.38;margin-top:12px;letter-spacing:-.3px}
+.vs{display:flex;gap:8px;margin-top:10px}
+.vs div{flex:1;background:#f7f5f1;border-radius:12px;padding:8px 10px;font-size:11.5px;line-height:1.5}
+.vs div b{display:block;font-size:12.5px}
+.vs div.win{background:var(--greensoft)}
+.follow{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.follow span{font-size:12px;border:1px solid #e3ddd2;border-radius:999px;padding:5px 11px;background:#fff}
+.follow span:before{content:"💬 "}
+.branch{margin-top:14px}
+.branch h4{font-size:13px;margin-bottom:8px}
+.branch h4 small{font-weight:400;color:var(--muted);font-size:11.5px}
+.brow{display:flex;gap:8px}
+.bt{flex:1;background:#f7f5f1;border-radius:12px;overflow:hidden}
+.bt .img{height:64px;display:grid;place-items:center;font-size:28px}
+.bt p{font-size:10.5px;line-height:1.4;padding:6px 7px 8px;font-weight:600}
+.buy{display:flex;gap:8px;margin-top:14px}
+.btn{flex:1;text-align:center;border-radius:12px;padding:11px 8px;font-size:13.5px;font-weight:600}
+.btn.p{background:var(--accent);color:#fff}
+.btn.l{background:#f3efe8}
+
+/* ---------- B: stories ---------- */
+.story{position:absolute;inset:0;background:linear-gradient(180deg,#f4ebe0 0%,#efe2d1 55%,#fff 55%)}
+.segs{display:flex;gap:4px;padding:6px 16px 0}
+.segs i{flex:1;height:3px;border-radius:9px;background:#0002}
+.segs i.d{background:#1f1d1a}
+.who{display:flex;align-items:center;gap:8px;padding:10px 16px;font-size:12px;color:#5d584f}
+.who b{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:13px}
+.story .hero{height:330px;display:grid;place-items:center;font-size:150px;position:relative}
+.story .tagline{position:absolute;bottom:14px;left:16px;font-size:12px;font-weight:700;background:#fff;border-radius:999px;padding:5px 12px;color:var(--accent);box-shadow:0 4px 12px #0001}
+.story .body{padding:18px 18px 0}
+.story h2{font-size:22px;line-height:1.35;letter-spacing:-.4px}
+.story .sub{font-size:13.5px;color:#625d54;margin-top:8px;line-height:1.55}
+.story .buy{margin-top:18px}
+.story .btn{padding:14px 8px;font-size:15px;border-radius:14px}
+.nextup{position:absolute;left:16px;right:16px;bottom:78px;display:flex;align-items:center;gap:10px;background:#f6f3ee;border-radius:14px;padding:9px 12px;font-size:12px;color:#5d584f}
+.nextup .ic{font-size:20px}
+.nextup b{color:var(--ink)}
+.nextup span.up{margin-left:auto;font-size:16px;color:var(--muted)}
+
+/* ---------- C: chat ---------- */
+.chat{padding:4px 12px 0;display:flex;flex-direction:column;gap:9px}
+.daysep{text-align:center;font-size:11px;color:var(--muted)}
+.bub{max-width:86%;background:#fff;border-radius:18px 18px 18px 6px;padding:10px 12px;font-size:13.5px;line-height:1.5}
+.bub.me{align-self:flex-end;background:var(--accent);color:#fff;border-radius:18px 18px 6px 18px}
+.pcard{display:flex;gap:9px;align-items:center;margin-top:8px;background:#f7f5f1;border-radius:12px;padding:7px}
+.pcard .ic{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:24px;flex:none}
+.pcard p{font-size:12px;line-height:1.4}
+.qr{display:flex;gap:6px;flex-wrap:wrap}
+.qr span{font-size:12.5px;border:1.5px solid var(--accent);color:var(--accent);border-radius:999px;padding:4px 12px;background:#fff;font-weight:600}
+.qr span.used{border-color:#ddd;color:#bbb}
+.ok{color:var(--green);font-weight:600}
+.hook.ok{color:#fff}
+.typing{font-size:11.5px;color:var(--muted);padding-left:4px}
+</style>
+</head>
+<body>
+
+<!-- ============ A ============ -->
+<div class="wrap"><div class="label">A · 一条信息流，没有分区</div><div class="frame"><div class="screen">
+  <div class="status"><span>9:41</span><span>100%</span></div>
+  <div class="tabs"><span>Chat</span><span class="on">为你</span><span class="upd">● 7 处新变化</span></div>
+  <div class="mason">
+    <div class="col">
+      <div class="tile"><div class="img" style="height:150px;background:linear-gradient(160deg,#fff1e6,#fbd9c2)">🍟<span class="hook hot">你等的价到了</span></div>
+        <div class="tx"><div class="h">空气炸锅 S$99，比你说的预算还低 S$1</div><div class="m"><span class="price">S$99<span class="was">129</span></span><span class="mini">已抢 71%</span></div></div></div>
+      <div class="tile"><div class="img" style="height:118px;background:linear-gradient(160deg,#fff7df,#ffe6b5)">🧴<span class="hook ok">✓ 你的批次没事</span></div>
+        <div class="tx"><div class="h">X 品牌防晒被抽检 SPF 不达标，你 10 月买的不受影响</div><div class="m"><span>📰 今早</span></div></div></div>
+      <div class="tile"><div class="img" style="height:132px;background:linear-gradient(160deg,#f3eee6,#e3d6c4)"><div class="ring"><i>🏠</i></div><span class="hook">12-12 搬家 · 还有 23 天</span></div>
+        <div class="tx"><div class="h">还差 3 样，按你的卧室照片配好了床头柜</div><div class="m"><span>1 / 4 已完成</span></div></div></div>
+      <div class="tile"><div class="img" style="height:110px;background:linear-gradient(160deg,#eef3ea,#d6e6cc)">🐈<span class="hook">12 月初用完</span></div>
+        <div class="tx"><div class="h">猫砂 12.12 囤 3 包省 S$6</div></div></div>
+    </div>
+    <div class="col">
+      <div class="tile"><div class="img" style="height:112px;background:linear-gradient(160deg,#f3f0ea,#e2dccf)">👟<span class="hook hot">42 码只剩 2 双</span></div>
+        <div class="tx"><div class="h">购物车里的 Converse，87% 的人说尺码正好</div><div class="m"><span class="price">S$65<span class="was">79</span></span></div></div></div>
+      <div class="tile"><div class="img" style="height:150px;background:linear-gradient(160deg,#f8e9ef,#efcfdc)">💨<span class="hook">你看了 3 次的 Dyson</span></div>
+        <div class="tx"><div class="h">风速只差 10%，便宜 S$520 的平替</div><div class="m"><span class="price">S$129</span></div></div></div>
+      <div class="tile"><div class="img" style="height:120px;background:linear-gradient(160deg,#e7f4ec,#c9e6d4)">🫧<span class="hook">和你一样油皮的人</span></div>
+        <div class="tx"><div class="h">41% 从 Garnier 换成了这支洁面</div><div class="av"><i style="background:#f2c6a8"></i><i style="background:#c9d8f0"></i><i style="background:#d7c2e8"></i></div></div></div>
+      <div class="tile"><div class="img" style="height:110px;background:linear-gradient(160deg,#fbe9f0,#f2cfdd)">🧪<span class="hook">你在用的出新了</span></div>
+        <div class="tx"><div class="h">COSRX 新配方，治你说的「用完会干」</div><div class="cd"><b>5</b>天<b>22</b>时后首发</div></div></div>
+    </div>
+  </div>
+  <div class="askbar">问我任何购物问题…<b>↑</b></div>
+</div></div></div>
+
+<!-- ============ A2 ============ -->
+<div class="wrap"><div class="label">A · 点一张，顺着长出下一步</div><div class="frame"><div class="screen">
+  <div class="status"><span>9:41</span><span>100%</span></div>
+  <div class="sheetbg"></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="big">💨<span class="hook" style="font-size:11px">你看了 3 次的 Dyson</span></div>
+    <h3>想要 Dyson 但嫌贵？Laifen SE 风速只差 10%，便宜 S$520</h3>
+    <div class="vs">
+      <div class="win"><b>Laifen SE · S$129</b>风速 22m/s · 噪音 59dB<br>重 405g</div>
+      <div><b>Dyson · S$649</b>风速 24m/s · 噪音 60dB<br>重 560g</div>
+    </div>
+    <div class="follow"><span>卷发效果差多少？</span><span>保修几年？</span><span>有没有更便宜的？</span></div>
+    <div class="buy"><div class="btn p">就买 Laifen</div><div class="btn l">还是想要 Dyson</div></div>
+    <div class="branch"><h4>顺着看 <small>· 因为你在挑吹风机</small></h4>
+      <div class="brow">
+        <div class="bt"><div class="img" style="background:#f8e9ef">🌀</div><p>Dyson 12.12 预计 S$549</p></div>
+        <div class="bt"><div class="img" style="background:#eef2fa">🪮</div><p>Laifen 原装卷发嘴 S$19</p></div>
+        <div class="bt"><div class="img" style="background:#eef3ea">🧴</div><p>油皮用的护发喷雾</p></div>
+      </div></div>
+  </div>
+</div></div></div>
+
+<!-- ============ B ============ -->
+<div class="wrap"><div class="label">B · 一次一张，上滑下一张</div><div class="frame"><div class="screen">
+  <div class="story">
+    <div class="status"><span>9:41</span><span>100%</span></div>
+    <div class="segs"><i class="d"></i><i class="d"></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="who"><b>✦</b>今天给你的第 2 条 / 共 7 条</div>
+    <div class="hero">👟<span class="tagline">放在购物车 21 天了</span></div>
+    <div class="body">
+      <h2>你担心的尺码问题有答案了：87% 的 42 码买家说正好</h2>
+      <div class="sub">而且 42 码只剩 2 双，今天 S$65 是 30 天最低价。</div>
+      <div class="buy"><div class="btn p">买 42 码</div><div class="btn l">不要了</div></div>
+    </div>
+  </div>
+  <div class="nextup"><span class="ic">🐈</span><div>下一条：<b>猫砂 12 月初用完</b></div><span class="up">⌃</span></div>
+  <div class="askbar">问我任何购物问题…<b>↑</b></div>
+</div></div></div>
+
+<!-- ============ C ============ -->
+<div class="wrap"><div class="label">C · 像朋友发消息</div><div class="frame"><div class="screen">
+  <div class="status"><span>9:41</span><span>100%</span></div>
+  <div class="tabs"><span>Chat</span><span class="on">为你</span></div>
+  <div class="chat">
+    <div class="daysep">今天 8:30</div>
+    <div class="bub">早！你等的空气炸锅降到 <b>S$99</b> 了，比你说的预算还低 S$1，限量 200 台已抢 143 台。
+      <div class="pcard"><div class="ic" style="background:#fdf0e3">🍟</div><p><b>Philips HD9252</b><br><span class="price">S$99</span><span class="was">S$129</span></p></div></div>
+    <div class="qr"><span>现在买</span><span class="used">再等等，S$90 叫我</span></div>
+    <div class="bub me">再等等，S$90 叫我</div>
+    <div class="bub">好，<span class="ok">盯着了 ✓</span><br>顺便：你购物车那双 Converse，42 码只剩 2 双。你之前担心尺码，87% 的人说正好。</div>
+    <div class="qr"><span>买 42 码</span><span>不要了</span></div>
+    <div class="bub">📰 还有个新闻：X 品牌防晒被抽检不达标。我查了，你 10 月买的批次 <span class="ok">不受影响</span>。</div>
+    <div class="typing">✦ 还有 4 件，下拉继续…</div>
+  </div>
+  <div class="askbar">回复，或问我任何购物问题…<b>↑</b></div>
+</div></div></div>
+
+</body>
+</html>
