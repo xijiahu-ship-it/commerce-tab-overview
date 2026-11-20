@@ -157,6 +157,31 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 .evh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}.evh b{font-size:13px}.evh span{font-size:11.5px;color:var(--mut)}
 .evr{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:center;margin-bottom:5px}.evr .bl{font-size:11.5px}
 .evs .sbar{height:18px}.evs .seg{font-size:10.5px}.evs .legend{margin-top:4px;font-size:11px;gap:12px}
+.evt{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.evt .tw{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.evt .tt{font-size:12.5px;font-weight:700;padding:8px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.evt .tt span{font-weight:400;color:var(--mut);font-size:11.5px}
+.evt table{font-size:12px}.evt td,.evt th{padding:6px 10px;vertical-align:top}
+.evt th{white-space:nowrap;font-size:11px;color:var(--mut);font-weight:600;text-align:left;background:var(--paper)}
+.evt td.n{white-space:nowrap;font-variant-numeric:tabular-nums}
+.evt td q{color:#4f5148;quotes:"“" "”"}
+.evt tr.zero td{color:var(--end)}
+.evt tr.sub td{color:var(--mut)}
+.evn{font-size:11.5px;color:var(--mut);margin-top:8px}
+@media (max-width:900px){.evt{grid-template-columns:1fr}}
+.evg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.evg .tw{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.evg .tt{font-size:12.5px;font-weight:700;margin-bottom:8px;display:flex;justify-content:space-between}
+.evg .tt span{font-weight:400;color:var(--mut);font-size:11.5px}
+.evg .evr{grid-template-columns:64px 1fr}
+.evg .seg{color:#fff}
+.lg{margin-top:8px;display:grid;gap:5px}
+.lg div{display:grid;grid-template-columns:10px 1fr auto;gap:7px;align-items:baseline;font-size:12px}
+.lg i{width:10px;height:10px;border-radius:3px;display:inline-block;transform:translateY(1px)}
+.lg b{font-weight:600}.lg em{font-style:normal;color:var(--mut);font-size:11.5px;white-space:nowrap}
+.lg q{display:block;color:var(--mut);font-size:11.5px;quotes:"“" "”";margin-top:1px}
+.lg .zero{color:var(--end);display:block;font-size:12px;margin-top:2px}
+@media (max-width:900px){.evg{grid-template-columns:1fr}}
 .evz{margin-top:8px;font-size:12px;color:var(--end)}.evz b{margin-right:8px}
 
 .mchip{align-items:flex-start}.mn{display:flex;flex-direction:column;min-width:0}.mn b{font-weight:600;font-size:14px}.mn q{font-size:12px;color:#5d5f57;quotes:"“" "”";line-height:1.45;margin-top:1px}
@@ -176,9 +201,9 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 
 @media (max-width:900px){.summary,.smap,.g2,.g3,.pom,.flow5,.steps5,.steps5.three{grid-template-columns:1fr}.sumcol+.sumcol{border-left:0;border-top:1px solid var(--line)}.srow,.srow.wide{grid-template-columns:1fr}.muse{max-width:180px}.f5:after{display:none}.barrow{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
-<header class="top"><div><h1>电商 Tab：要做哪些场景，链路怎么提效</h1><p>先看要做哪些业务场景，再看理想形态，最后看当前推荐链路怎么实现、哪里要优化</p></div>
+<header class="top"><div><h1>电商 Tab：要做哪些场景，链路怎么提效</h1><p>先看要做哪些业务场景及理想态，再看交互可能性，最后看当前推荐链路怎么实现、哪里要优化</p></div>
 <div class="goals"><div class="goal"><b>电商 tab 留存率</b>次日 / 7 日回访</div><div class="goal"><b>为 chat 贡献的 DAU</b>从卡片进 chat 并发消息</div></div></header>
-<nav class="tabs"><button class="tab on" data-t="t1">业务场景</button><button class="tab" data-t="t2">理想形态</button><button class="tab" data-t="t3">链路梳理</button></nav>
+<nav class="tabs"><button class="tab on" data-t="t1">业务场景及理想态</button><button class="tab" data-t="t2">交互可能性</button><button class="tab" data-t="t3">链路梳理</button></nav>
 <div class="panel on" id="t1">
 <section class="sec">
 <div class="sech"><h2>我们要接住的 16 个场景</h2><span class="meta"><span class="st st-new">新增</span> 9 个 · <span class="st st-have">已有</span> 7 个</span></div>
@@ -190,25 +215,26 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
   <div class="mchip dim"><span class="sid">T2</span>入学、入职、活动筹备、空间改造</div>
   <div class="note3"><b>每张卡都要讲清三件事</b>为什么是现在 · 为什么是你 · 点了能做什么</div></div>
 </div>
-<div class="evs"><div class="evh"><b>数据补充 · 最新评测 2000 张卡</b><span>评测 16446 · SG · 100 人 × 20 张。只有 memory 通路的卡分 Ongoing / Potential，其余都算普通卡</span></div>
-<div class="evr"><span class="bl">全部 2000 张</span><div class="sbar"><div class="seg c-on" style="flex:635" title="Ongoing 635"><span>32%</span></div><div class="seg c-po" style="flex:352" title="Potential 352"><span>18%</span></div><div class="seg c-pr" style="flex:7" title="持续性 7"><span>0%</span></div><div class="seg c-end" style="flex:25" title="已结束仍推 25"><span>1%</span></div><div class="seg c-gen" style="flex:981" title="普通卡 981"><span>49%</span></div></div></div>
-<div class="evr"><span class="bl">首屏 400 张</span><div class="sbar"><div class="seg c-on" style="flex:242" title="Ongoing 242"><span>60%</span></div><div class="seg c-po" style="flex:105" title="Potential 105"><span>26%</span></div><div class="seg c-pr" style="flex:2" title="持续性 2"><span>0%</span></div><div class="seg c-end" style="flex:4" title="已结束仍推 4"><span>1%</span></div><div class="seg c-gen" style="flex:47" title="普通卡 47"><span>12%</span></div></div></div>
-<div class="legend"><span><i class="c-on"></i>Ongoing 635</span><span><i class="c-po"></i>Potential 352</span><span><i class="c-pr"></i>持续性 7</span><span><i class="c-end"></i>已结束仍推 25</span><span><i class="c-gen"></i>普通卡 981（Shopee 泛推、热门品类、mpi、最近搜索）</span></div>
-<div class="evz"><b>完全没推</b>O3 替你等时机 · O5 购后履约 · O6 购后权益 · P4 关注对象上新 · P5 关注对象优惠 · P6 资讯钩子 · P8 同类人趋势 · 持续性项目形态</div></div>
+<div class="evs"><div class="evh"><b>数据补充 · 最新评测 2000 张卡</b><span>评测 16446 · SG · 100 人 × 20 张。口径：用户在时效窗口内碰过卡上推荐的这个东西就算 Ongoing（含 mpi、最近搜索、已结束仍推，持续性项目算长期 Ongoing）；没碰过、从已有物品 / 情景 / 偏好推出来的算 Potential，同款补货算 Potential</span></div>
+<div class="evr"><span class="bl">全部 2000 张</span><div class="sbar"><div class="seg c-on" style="flex:884" title="Ongoing 884"><span>44%</span></div><div class="seg c-po" style="flex:367" title="Potential 367"><span>18%</span></div><div class="seg c-gen" style="flex:749" title="普通卡 749"><span>37%</span></div></div></div>
+<div class="legend"><span><i class="c-on"></i>Ongoing 884</span><span><i class="c-po"></i>Potential 367</span><span><i class="c-gen"></i>普通卡 749（Shopee 推荐流 429、热门品类 320，没有个人依据）</span></div>
+<div class="evg"><div class="tw"><div class="tt">Ongoing 884 张</div><div class="evr"><span class="bl">全部</span><div class="sbar"><div class="seg" style="flex:415;background:#1f4d38" title="O2 适配与参数核实 415"><span>47%</span></div><div class="seg" style="flex:252;background:#2f6b4f" title="O1 选购结论（比较） 252"><span>29%</span></div><div class="seg" style="flex:106;background:#4f8c6c" title="O4 最优购买方案 106"><span>12%</span></div><div class="seg" style="flex:79;background:#7fae94" title="最近搜索的单品 79"><span>9%</span></div><div class="seg" style="flex:25;background:#b3261e" title="已结束仍在推 25"><span></span></div><div class="seg" style="flex:7;background:#c07a2c" title="T1 持续性项目（长期 Ongoing） 7"><span></span></div></div></div><div class="lg"><div><i style="background:#1f4d38"></i><span><b>O2 适配与参数核实</b><q>这款11厘米高的JOMO冰缎枕是为侧睡者设计的吗？</q></span><em>415 · 46.9%</em></div><div><i style="background:#2f6b4f"></i><span><b>O1 选购结论（比较）</b><q>MacBook Pro M6还是M5 Pro：哪款统一内存上限更高？</q></span><em>252 · 28.5%</em></div><div><i style="background:#4f8c6c"></i><span><b>O4 最优购买方案</b><q>Souper Baby无盐款冷冻配送：什么时候免运费？</q></span><em>106 · 12.0%</em></div><div><i style="background:#7fae94"></i><span><b>最近搜索的单品</b><q>（无文案）Sony FE 50-150mm F2 GM 镜头</q></span><em>79 · 8.9%</em></div><div><i style="background:#b3261e"></i><span><b>已结束仍在推</b><q>哪款有自动集尘底座：小米H50还是小米S40C？（已超时效窗口）</q></span><em>25 · 2.8%</em></div><div><i style="background:#c07a2c"></i><span><b>T1 持续性项目（长期 Ongoing）</b><q>JIJI Don高背款带脚踏吗？（布置书房，单卡）</q></span><em>7 · 0.8%</em></div><span class="zero">0 张：O3 替你等时机 · O5 购后履约 · O6 购后权益 · O7 搁置唤回</span></div></div><div class="tw"><div class="tt">Potential 367 张</div><div class="evr"><span class="bl">全部</span><div class="sbar"><div class="seg" style="flex:160;background:#24467f" title="P1 消耗补充（含同款补货） 160"><span>44%</span></div><div class="seg" style="flex:104;background:#3a62a8" title="P3 情景准备 104"><span>28%</span></div><div class="seg" style="flex:93;background:#6f90c8" title="P2 必要配件 93"><span>25%</span></div><div class="seg" style="flex:8;background:#9fb6dd" title="兴趣延伸（16 个场景外） 8"><span></span></div><div class="seg" style="flex:2;background:#c7d4ec" title="P7 平替和升级 2"><span></span></div></div></div><div class="lg"><div><i style="background:#24467f"></i><span><b>P1 消耗补充（含同款补货）</b><q>补货Milo袋装饮料：四箱套装每包更便宜吗？</q></span><em>160 · 43.6%</em></div><div><i style="background:#3a62a8"></i><span><b>P3 情景准备</b><q>深圳之行：确认eSIM大陆覆盖，以及3C充电宝不超过100Wh。</q></span><em>104 · 28.3%</em></div><div><i style="background:#6f90c8"></i><span><b>P2 必要配件</b><q>在 Qi2 25W 充电板上给你的 iPhone 18 Pro 补电。</q></span><em>93 · 25.3%</em></div><div><i style="background:#9fb6dd"></i><span><b>兴趣延伸（16 个场景外）</b><q>7克Sculpt & Glow Duo是Double Gleam & Omega色号吗？</q></span><em>8 · 2.2%</em></div><div><i style="background:#c7d4ec"></i><span><b>P7 平替和升级</b><q>你蕾丝发片的耐热合成纤维替代款</q></span><em>2 · 0.5%</em></div><span class="zero">0 张：P4 关注对象上新 · P5 关注对象优惠 · P6 资讯钩子 · P8 同类人趋势</span></div></div></div>
+<div class="evz"><b>完全没推</b>O3 替你等时机 · O5 购后履约 · O6 购后权益 · O7 搁置唤回 · P4 关注对象上新 · P5 关注对象优惠 · P6 资讯钩子 · P8 同类人趋势 · 持续性项目形态</div>
+<div class="evn">细分按卡面文字规则打标，抽检约 85% 准；比较卡一律算 O1，带「每片 / 每毫升更便宜」的比价算同款补货（P1）。mpi 里有 51 张评测判「和用户无关」，待核实商品是否真在购物车或收藏。</div></div>
 <div class="takeaway"><b>结论</b>
 <ul><li><b>新增的 9 个</b>：缺外部信息（降价、上新、优惠、资讯）、购后数据（物流、价保）、相似人群统计，以及项目结构</li>
-<li><b>已有的 7 个</b>：补货、配件、情境推得出来；O1 / O2 / O4 / O7 卡出来了，但停在「问参数」，没给结论、没用他自己的记录、没算账</li></ul></div>
+<li><b>已有的 7 个</b>：补货、配件、情境推得出来；O1 / O2 / O4 卡出来了，但停在「问参数」，没给结论、没用他自己的记录、没算账；O7 为 0（挂在购物车商品上的 324 张都在问参数）</li></ul></div>
 </section>
 
 <section class="sec"><div class="sech"><h2>Ongoing · 帮他做完决定</h2></div><div class="srow isnew" id="O3">
 <div class="sl"><div class="sh"><span class="sid">O3</span><b>替你等时机</b><span class="st st-new">新增</span></div>
 <div class="kv"><i>用户此刻</i>收藏 Philips 空气炸锅；对话里说「降到 S$100 以内再买」</div><div class="kv"><i>理想的卡做到</i><strong>降到他说的预算时再提醒</strong></div>
-<div class="now"><i>最新评测里</i>1 张；没有盯价触发，价格变化进不了近线<div class="ex none">评测里没有这类卡</div></div></div>
+<div class="now"><i>最新评测里</i>0 张；唯一一张「上次买的猫砂补货了吗」是同款补货，按口径归 P1。没有盯价触发，价格变化进不了近线<div class="ex none">评测里没有这类卡</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="pc h"><span class="badge">等时机</span><div class="pimg" style="background:#fdf2e6">🍟</div><div class="pbody"><div class="ptitle">Philips 空气炸锅 HD9252</div><div class="price">S$99<span class="was">S$129</span></div><span class="reason">你等的价到了：12.12 零点 S$99，在你的预算内，限量 200 台</span><div class="ctas"><span class="cta fill">到点提醒我</span></div></div></div></div></div></div></div>
 <div class="sr"></div></div><div class="srow isnew" id="O5">
 <div class="sl"><div class="sh"><span class="sid">O5</span><b>购后履约</b><span class="st st-new">新增</span></div>
 <div class="kv"><i>用户此刻</i>书桌订单显示 11-25 才到；对话里说「22 号开始在家办公」</div><div class="kv"><i>理想的卡做到</i><strong>到货赶不赶得上他的时间点</strong></div>
-<div class="now"><i>最新评测里</i>2 张（预购到货）；没接物流数据<div class="ex">“检查 iPhone Duo 预购的预计到货时间是否已延到11月以后”</div></div></div>
+<div class="now"><i>最新评测里</i>0 张；「iPhone Duo 预购到货」用户还没下单，归 O4。没接物流数据<div class="ex none">评测里没有这类卡</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="qc"><div class="qtext">书桌赶不上我 22 号在家办公，有当天能到的同款吗？</div>
         <div class="qitems"><div class="qi"><div class="pimg sm" style="background:#f3efe8">🪑</div><div class="pbody"><div class="ptitle">同款书桌 · 本地当天达</div><div class="price">S$139</div><span class="reason">21 号送达；原订单可以免费取消</span></div></div></div>
         <div class="ctas"><span class="cta fill">换成当天达</span><span class="cta">联系卖家加急</span></div></div></div></div></div></div>
@@ -220,7 +246,7 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 <div class="sr"><figure class="muse"><img src="muse/06-ideas-task-preview.jpg" loading="lazy" alt="Muse"><figcaption>Muse：买的东西降价了，帮你申请退款</figcaption></figure></div></div><div class="srow" id="O1">
 <div class="sl"><div class="sh"><span class="sid">O1</span><b>选购结论</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>5 天内看了 3 款无线耳机；对话里说「地铁通勤用，预算 S$80 以内」</div><div class="kv"><i>理想的卡做到</i><strong>用他的条件把几款比完，直接给结论</strong></div>
-<div class="now"><i>最新评测里</i>约 140 张「A 还是 B」比较卡，只提问、不给结论<div class="ex">“Sony WH-1000XM5 或 SPRISE G59：哪款是为电脑游戏设计的？”</div></div></div>
+<div class="now"><i>最新评测里</i>252 张（Ongoing 的 28.5%）「A 还是 B」比较卡，只提问、不给结论<div class="ex">“MacBook Pro M6还是M5 Pro：哪款统一内存上限更高？”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="qc"><div class="qtext">地铁通勤、S$80 以内，这三款耳机哪款降噪够用？</div>
         <div class="qitems three">
           <div class="qi"><div class="pimg sm" style="background:#eef3f6">🎧</div><div class="pbody"><div class="ptitle">Soundcore P40i</div><div class="price">S$69</div><span class="reason">降噪 -52dB，续航 10h，预算内</span></div></div>
@@ -230,25 +256,25 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 <div class="sr"><figure class="muse"><img src="muse/05-ideas-shopping.jpg" loading="lazy" alt="Muse"><figcaption>Muse：按你的条件做好的候选清单</figcaption></figure></div></div><div class="srow" id="O2">
 <div class="sl"><div class="sh"><span class="sid">O2</span><b>适配验证</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>去年 Uniqlo 卫衣 L 码因「偏小」换成 XL；这周在看 Uniqlo 新外套</div><div class="kv"><i>理想的卡做到</i><strong>用他自己的记录确认尺码、兼容</strong></div>
-<div class="now"><i>最新评测里</i>约 90 张问尺码 / 适配，没用到他自己的退换和设备记录<div class="ex">“确认 novita W11 滤芯套装适合手头的 P6”</div></div></div>
+<div class="now"><i>最新评测里</i>415 张（Ongoing 的 46.9%，最大一类）问尺码、参数、适配，没用到他自己的退换和设备记录<div class="ex">“这款11厘米高的JOMO冰缎枕是为侧睡者设计的吗？”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="pc h"><div class="pimg" style="background:#f1eef8">🧥</div><div class="pbody"><div class="ptitle">Uniqlo 摇粒绒外套 Regular Fit</div><div class="price">S$49.90</div><span class="reason">你上次卫衣从 L 换成了 XL；这件同版型，XL 胸围 116cm，和你留下那件一样</span><div class="ctas"><span class="cta fill">选 XL 加购</span></div></div></div></div></div></div></div>
 <div class="sr"><figure class="muse"><img src="muse/05-ideas-shopping.jpg" loading="lazy" alt="Muse"><figcaption>Muse：结账前替你核实型号</figcaption></figure></div></div><div class="srow" id="O4">
 <div class="sl"><div class="sh"><span class="sid">O4</span><b>最优购买方案</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>购物车里 3 件 Innisfree，共 S$37.50，差 S$2.50 到满减门槛</div><div class="kv"><i>理想的卡做到</i><strong>券、凑单、门槛替他算好</strong></div>
-<div class="now"><i>最新评测里</i>约 150 张单价比较；没有券和凑单<div class="ex">“加购的 Marvis 海洋薄荷三支装，平均每支更便宜吗？”</div></div></div>
+<div class="now"><i>最新评测里</i>106 张，问运费、官方店、库存、单价；没有券和凑单<div class="ex">“Souper Baby无盐款冷冻配送：什么时候免运费？”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="qc"><div class="qtext">购物车这 3 件 Innisfree，怎么买实付最少？</div>
         <div class="qitems"><div class="qi"><div class="pimg sm" style="background:#eaf4ee">🧼</div><div class="pbody"><div class="ptitle">Innisfree 绿茶洁面 50ml</div><div class="price">S$6</div><span class="reason">加上它满 S$40 减 S$8，还免运费：实付 S$35.50，比现在少 S$5</span></div></div></div>
         <div class="ctas"><span class="cta fill">一键加购并用券</span></div></div></div></div></div></div>
 <div class="sr"><figure class="muse"><img src="muse/04-ideas-personalized.jpg" loading="lazy" alt="Muse"><figcaption>Muse：替你找到决定好的那款并下单</figcaption></figure></div></div><div class="srow" id="O7">
 <div class="sl"><div class="sh"><span class="sid">O7</span><b>搁置唤回</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>Converse Chuck 70 在购物车 21 天；看过尺码评价但没下单</div><div class="kv"><i>理想的卡做到</i><strong>解决当初犹豫的原因，再唤回</strong></div>
-<div class="now"><i>最新评测里</i>约 140 张「加购的 X …」，在问参数，没有新理由<div class="ex">“加购的 Adizero Pacer 是否标明六毫米中底落差？”</div></div></div>
+<div class="now"><i>最新评测里</i>0 张；挂在购物车 / 收藏商品上的卡有 324 张，但都在问参数、比较、比价，没有新理由，归到 O2 / O1 / O4<div class="ex">“加购的Owala FreeSip 24盎司水瓶有自动锁盖吗？（算 O2）”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="pc h"><div class="pimg" style="background:#f4f1ea">👟</div><div class="pbody"><div class="ptitle">Converse Chuck 70 · 购物车里那双</div><div class="price">S$65<span class="was">S$79</span></div><span class="reason">你担心的尺码：87% 的 42 码买家说合脚，不用往大选；42 码只剩 2 双，30 天最低价</span><div class="ctas"><span class="cta fill">买 42 码</span><span class="cta">不要了</span></div></div></div></div></div></div></div>
 <div class="sr"></div></div></section>
 <section class="sec"><div class="sech"><h2>Potential · 帮他起个头</h2></div><div class="srow isnew" id="P4">
 <div class="sl"><div class="sh"><span class="sid">P4</span><b>关注对象上新</b><span class="st st-new">新增</span></div>
 <div class="kv"><i>用户此刻</i>COSRX 精华买过 2 次；对话里提过「用完脸会干」</div><div class="kv"><i>理想的卡做到</i><strong>他在用的品牌、型号上新</strong></div>
-<div class="now"><i>最新评测里</i>2 张；没有上新信息源<div class="ex none">评测里没有这类卡</div></div></div>
+<div class="now"><i>最新评测里</i>0 张；没有上新信息源<div class="ex none">评测里没有这类卡</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="pc h"><span class="badge">上新</span><div class="pimg" style="background:#f6eef2">🧪</div><div class="pbody"><div class="ptitle">COSRX 精华 新配方</div><div class="price">S$28</div><span class="reason">你在用的这支出了新配方，加了神经酰胺，主打你提过的「用完会干」；25 号 10:00 首发，前 500 名送小样</span><div class="ctas"><span class="cta fill">开售提醒我</span></div></div></div></div></div></div></div>
 <div class="sr"></div></div><div class="srow isnew" id="P5">
 <div class="sl"><div class="sh"><span class="sid">P5</span><b>关注对象优惠</b><span class="st st-new">新增</span></div>
@@ -265,7 +291,7 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 <div class="sr"><figure class="muse"><img src="muse/03-feeds-ski.jpg" loading="lazy" alt="Muse"><figcaption>Muse：兴趣相关的资讯卡</figcaption></figure></div></div><div class="srow isnew" id="P7">
 <div class="sl"><div class="sh"><span class="sid">P7</span><b>平替和升级</b><span class="st st-new">新增</span></div>
 <div class="kv"><i>用户此刻</i>Dyson 吹风机看了 3 次，没加购也没下单</div><div class="kv"><i>理想的卡做到</i><strong>他想要的东西，给平替或升级款</strong></div>
-<div class="now"><i>最新评测里</i>约 8 张，零散出现<div class="ex">“Pocket 3的替代款，18分钟可充至80%。”</div></div></div>
+<div class="now"><i>最新评测里</i>2 张，零散出现<div class="ex">“你蕾丝发片的耐热合成纤维替代款”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="qc"><div class="qtext">Dyson 吹风机太贵了，有风速接近、便宜很多的吗？</div>
         <div class="qitems two">
           <div class="qi"><div class="pimg sm" style="background:#f6eef2">💨</div><div class="pbody"><div class="ptitle">Laifen SE</div><div class="price">S$129</div><span class="reason">风速差约 10%，价格约 1/5；噪音 59dB vs 60dB</span></div></div>
@@ -283,7 +309,7 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 <div class="sr"></div></div><div class="srow" id="P1">
 <div class="sl"><div class="sh"><span class="sid">P1</span><b>消耗补充</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>镁 5 月买 2 瓶（9 月到期）；洗衣液约 40 天一补，已 38 天；猫砂按用量 12 月初用完</div><div class="kv"><i>理想的卡做到</i><strong>按用量周期，该补时提醒</strong></div>
-<div class="now"><i>最新评测里</i>约 30 张补货卡；周期按订单间隔算<div class="ex">“核实Laurier 40厘米日用三包装是否比10月便宜”</div></div></div>
+<div class="now"><i>最新评测里</i>160 张（Potential 的 43.6%，最大一类）补货和同款比价；周期按订单间隔算<div class="ex">“补货Milo袋装饮料：四箱套装每包更便宜吗？”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="qc"><div class="qtext">12.12 前这 3 样快用完了，一起囤怎么最省？</div>
         <div class="qitems three">
           <div class="qi"><div class="pimg sm" style="background:#eef3ea">💊</div><div class="pbody"><div class="ptitle">Magnesium ×2</div><div class="price">S$51.32</div><span class="reason">9 月已到期</span></div></div>
@@ -294,12 +320,12 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 <div class="sr"></div></div><div class="srow" id="P2">
 <div class="sl"><div class="sh"><span class="sid">P2</span><b>必要配件</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>11-15 签收 Canon M50 单机身套装，订单里没有存储卡，也没买过</div><div class="kv"><i>理想的卡做到</i><strong>给已买的东西配必要配件</strong></div>
-<div class="now"><i>最新评测里</i>持有物衍生卡约 170 张，配件是主力<div class="ex">“为Sony A7 V查看一张V60 SD卡和一个带湿度计的防潮柜”</div></div></div>
+<div class="now"><i>最新评测里</i>93 张，围绕已买主件推配件<div class="ex">“在 Qi2 25W 充电板上给你的 iPhone 18 Pro 补电。”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="pc h"><div class="pimg" style="background:#eef2fa">💾</div><div class="pbody"><div class="ptitle">SanDisk Extreme 64GB U3</div><div class="price">S$29</div><span class="reason">你的 M50 到了，但套装里没有存储卡；拍 4K 要 U3，已确认兼容</span><div class="ctas"><span class="cta fill">加购</span></div></div></div></div></div></div></div>
 <div class="sr"></div></div><div class="srow" id="P3">
 <div class="sl"><div class="sh"><span class="sid">P3</span><b>情景准备</b><span class="st st-have">已有</span></div>
 <div class="kv"><i>用户此刻</i>邮件里有 12-20 飞大阪的行程单；订单里没有厚外套</div><div class="kv"><i>理想的卡做到</i><strong>出行、换季前把要用的备好</strong></div>
-<div class="now"><i>最新评测里</i>约 110 张情境卡<div class="ex">“韩国行程所需流量：5G电子卡，两天7GB。”</div></div></div>
+<div class="now"><i>最新评测里</i>104 张情境卡，以出行、出差为主<div class="ex">“深圳之行：确认eSIM大陆覆盖，以及3C充电宝不超过100Wh。”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="phone"><div class="feed one"><div class="qc"><div class="qtext">12 月去大阪，当地 3–8°C，我还缺哪些保暖的？</div>
         <div class="qitems two">
           <div class="qi"><div class="pimg sm" style="background:#eef2fa">🧥</div><div class="pbody"><div class="ptitle">可折叠轻羽绒</div><div class="price">S$59</div><span class="reason">你订单里没有厚外套，12-15 前到</span></div></div>
@@ -310,7 +336,7 @@ td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:la
 <div class="srow wide isnew" id="T1"><div class="sl"><div class="sh"><span class="sid">T1</span><b>搬家 / 新居布置</b><span class="st st-new">新增</span></div>
 <div class="kv"><i>用户此刻</i>对话里说 12-12 搬家；床已下单，鞋架在购物车，发过一张卧室照片</div>
 <div class="kv"><i>理想的卡做到</i><strong>项目 banner 显示还差几样、下一步做什么；缺信息的直接问</strong></div>
-<div class="now"><i>最新评测里</i>10 张布置类单卡，没有项目结构和进度<div class="ex">“YORI三十厘米免钻墙架能承重多少？”</div></div></div>
+<div class="now"><i>最新评测里</i>7 张布置类单卡（算长期 Ongoing），没有项目结构和进度<div class="ex">“JIJI Don高背款带脚踏吗？”</div></div></div>
 <div class="sm"><div class="mockwrap"><div class="grid g2">
       <div class="panel">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px"><b style="font-size:14px">🏠 12-12 搬家 · 还差 3 样</b><span class="pill o">还有 23 天</span></div>
